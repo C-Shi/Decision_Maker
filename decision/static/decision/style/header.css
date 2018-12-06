@@ -1,0 +1,19 @@
+html, body {
+  box-sizing: border-box;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 56px;
+  background-color: #ccc;
+}
+
+.nav ul {
+  line-height: 40px;
+}
+
+.nav ul li a{
+  color: #111;
+}
