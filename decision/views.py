@@ -8,7 +8,7 @@ def index(request):
 
 # RESTFUL get NEW form page
 def new(request):
-  pass
+  return render(request, 'decision/new.html')
 
 # RESTFUL post Create page
 def create(request):
