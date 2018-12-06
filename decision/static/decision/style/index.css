@@ -1,0 +1,117 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0 0;
+  padding: 0 0;
+}
+
+.info {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  z-index: 1;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgba(194, 194, 194, 0.7);
+  padding: 1em 1em;
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 2px 9px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    2px 2px 9px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         2px 2px 9px 0px rgba(50, 50, 50, 0.75);
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.background div {
+  position: absolute;
+  top:0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0;
+  animation: imageAnimation 50s linear infinite;
+}
+
+.info button {
+  border: 0px;
+  font-size: 2em;
+  padding: .2em 1em;
+  min-width: 5em;
+  border-radius: 4px;
+  background: transparent;
+  transition: background 1s, color 1s;
+}
+
+.info button:nth-child(1){
+  border: 2px solid rgb(28, 184, 65);
+  color: rgb(28, 184, 65)
+}
+
+.info button:nth-child(2){
+  border: 2px solid rgb(225, 117, 20);
+  color: rgb(223, 117, 20)
+}
+
+.info button:nth-child(1):hover{
+  background: rgb(28, 184, 65);
+  color: #fff;
+}
+
+.info button:nth-child(2):hover{
+  background: rgb(223, 117, 20);
+  color: #fff;
+}
+
+.background div:nth-child(1){
+  background-image: url('../img/bg1.jpeg');
+}
+
+.background div:nth-child(2){
+  background-image: url('../img/bg2.jpeg');
+  animation-delay: 10s;
+}
+
+.background div:nth-child(3){
+  background-image: url('../img/bg3.jpeg');
+  animation-delay: 20s;
+}
+
+.background div:nth-child(4){
+  background-image: url('../img/bg4.jpeg');
+  animation-delay: 30s;
+}
+
+.background div:nth-child(5){
+  background-image: url('../img/bg5.jpeg');
+  animation-delay: 40s;
+}
+
+@keyframes imageAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0;
+  }
+}
