@@ -7,6 +7,7 @@ class Activity(models.Model):
   id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   creator = models.CharField(max_length=20)
   email = models.CharField(max_length=20)
+  description = models.TextField(default='Do you think this is a greate idea?')
   expire_on = models.DateField()
   def __str__(self):
     return self.context
