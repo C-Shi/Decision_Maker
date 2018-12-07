@@ -1,3 +1,45 @@
 {% include './partials/_header.html' %}
 
+
+<form class="pure-form pure-form-aligned new" action="{% url 'decision:create' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <div class="pure-control-group">
+            <label>Activity</label>
+            <input name="context" type="text" placeholder="What activity you want to create?" required>
+        </div>
+
+        <div class="pure-control-group">
+            <label>Your Name</label>
+            <input name="creator" type="text" placeholder="This name will be displayed" required>
+        </div>
+
+        <div class="pure-control-group">
+            <label>Email</label>
+            <input name="email" type="email" placeholder="What email you want to be notified" required>
+        </div>
+
+        <div class="pure-control-group">
+            <label>description</label>
+            <textarea name="description" placeholder="Write a description about your activity"></textarea>
+        </div>
+
+        <div class="options">
+            <div class="pure-control-group">
+                <label>Option 1</label>
+                <input name="option" type="text" placeholder="Option 1">
+            </div>
+            <div class="pure-control-group">
+                <label>Option 2</label>
+                <input name="option" type="text" placeholder="Option 2">
+            </div>
+            <div class="pure-control-group">
+                <label>Option 3</label>
+                <input name="option" type="text" placeholder="Option 3">
+            </div>
+        </div>
+        <button type="submit" class="pure-button pure-button-primary">Create Activity</button>
+    </fieldset>
+</form>
+
 {% include './partials/_footer.html' %}
