@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.urls import reverse
+import json
 import datetime
 
 from .models import Activity
@@ -50,21 +51,25 @@ def show(request, activity_id):
   choice_list = activity.choice_set.all()
   return render(request, 'decision/show.html', {'activity': activity, 'choice_list': choice_list})
 
+# this route handles anything happens after user votes for an options
 def vote(request, activity_id):
   activity = Activity.objects.get(pk=activity_id)
   choice_list = activity.choice_set.all()
   print(request.POST['choice'])
   try:
-    selected_choice = activity.choice_set.all()
+    selected_choice = activity.choice_set.get(name=request.POST['choice'])
   except (KeyError, Choice.DoesNotExist):
     return render(request, 'decision/show.html', {'activity': activity, 'choice_list': choice_list, 'error_message': 'You did not select anything'})
   else:
+    selected_choice.votes_count += 1
+    selected_choice.save()
     return HttpResponseRedirect(reverse('decision:success', args=(activity.id,)))
 
 def success(request, activity_id):
   activity = Activity.objects.get(pk=activity_id)
-  choice_list = activity.choice_set.all()
-  return render(request, 'decision/success.html')
+  choice_list = list(activity.choice_set.all().values('name', 'votes_count'))
+
+  return render(request, 'decision/success.html', {'choice_list': choice_list, 'activity': activity })
 
 # RESTFUL post route to delete
 def delete(request, decision):
