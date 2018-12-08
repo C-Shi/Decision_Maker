@@ -10,15 +10,50 @@
     <div class="info">
       <h1>Decision Maker: Voting for Best Choice</h1>
       <div>
-        <button>Create</button>
-        <button>Vote</button>
+        <a href="{% url 'decision:new' %}">Create</a>
+        <a id="vote-btn">Vote</a>
       </div>
       <p>Decision Maker is a web app that helps groups of friends to vote on a preferred choice (using ranked voting)</p>
     </div>
+
+    <div class="glass hidden"></div>
     <div class="background">
       <div></div>
       <div></div>
       <div></div>
     </div>
+
+    <div class="token hidden">
+      <input type="text" id="activity-token">
+      <a href="" class="pure-button pure-button-primary" id="activity-token-link">Go To</a>
+    </div>
+
+
+    <script>
+      var token = document.getElementsByClassName('token')[0]
+      var input = document.getElementById('activity-token')
+      var anchor = document.getElementById('activity-token-link')
+      var voteBtn = document.getElementById('vote-btn');
+      var glass = document.getElementsByClassName('glass')[0]
+
+      input.addEventListener('input', function(e){
+        anchor.setAttribute('href', `/show/${e.target.value}`)
+      })
+
+      
+      voteBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        // show glass
+        glass.classList.remove('hidden')
+        console.log(token)
+        token.classList.remove('hidden')
+      })
+      
+      glass.addEventListener('click', function(e){
+        this.classList.add('hidden');
+        token.classList.add('hidden')
+      })
+
+    </script>
   </body>
 </html>
