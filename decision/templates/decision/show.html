@@ -29,7 +29,8 @@
             </tr>
             <tr>
               <td colspan="4">
-                  <form class="pure-form">
+                  <form class="pure-form" action="{% url 'decision:vote' activity.id %}" method="POST">
+                      {% csrf_token %}
                       {% for choice in choice_list %}
                         <label class="pure-checkbox">
                             <input name="choice" type="radio" value="{{ choice }}">
