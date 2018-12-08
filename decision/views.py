@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.utils import timezone
+from django.urls import reverse
 import datetime
 
 from .models import Activity
+
 
 # Create your views here.
 
@@ -41,9 +43,28 @@ def create(request):
   return HttpResponseRedirect('/')
 
 # RESTFUL show route for individual decision
-def show(request, decision_id):
-  
-  pass
+# this app does not have route for seeing all activity
+# only accessible with known token
+def show(request, activity_id):
+  activity = Activity.objects.get(pk=activity_id)
+  choice_list = activity.choice_set.all()
+  return render(request, 'decision/show.html', {'activity': activity, 'choice_list': choice_list})
+
+def vote(request, activity_id):
+  activity = Activity.objects.get(pk=activity_id)
+  choice_list = activity.choice_set.all()
+  print(request.POST['choice'])
+  try:
+    selected_choice = activity.choice_set.all()
+  except (KeyError, Choice.DoesNotExist):
+    return render(request, 'decision/show.html', {'activity': activity, 'choice_list': choice_list, 'error_message': 'You did not select anything'})
+  else:
+    return HttpResponseRedirect(reverse('decision:success', args=(activity.id,)))
+
+def success(request, activity_id):
+  activity = Activity.objects.get(pk=activity_id)
+  choice_list = activity.choice_set.all()
+  return render(request, 'decision/success.html')
 
 # RESTFUL post route to delete
 def delete(request, decision):

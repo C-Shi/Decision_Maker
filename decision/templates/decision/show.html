@@ -1,0 +1,50 @@
+{% include './partials/_header.html' %}
+
+<main class="show">
+    <table class="pure-table pure-table-bordered">
+        <thead>
+            <tr>
+                <th>Activity</th>
+                <th>Creator</th>
+                <th>Email</th>
+                <th>Expire Date</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            <tr>
+                <td>{{ activity.context }}</td>
+                <td>{{ activity.creator }}</td>
+                <td>{{ activity.email }}</td>
+                <td>{{ activity.expire_on }}</td>
+            </tr>
+            <tr>
+                <th colspan="4">Activity Description</th>
+            </tr>
+            <tr>
+              <td colspan="4">{{ activity.description }}</td>
+            </tr>
+            <tr>
+              <th colspan="4">Please Vote for the one that interested you most</th>
+            </tr>
+            <tr>
+              <td colspan="4">
+                  <form class="pure-form" action="{% url 'decision:vote' activity.id %}" method="POST">
+                      {% csrf_token %}
+                      {% for choice in choice_list %}
+                        <label class="pure-checkbox">
+                            <input name="choice" type="radio" value="{{ choice }}">
+                            {{ choice }}
+                        </label>
+                      {% endfor %}
+                      <p><strong>* Your data will be collected anonymously</strong></p>
+                      <button class="pure-button pure-button-primary">Vote</button>
+                      <a href="{% url 'decision:index' %}" class="pure-button pure-button-active">Not The Correct Activity</a>
+                  </form>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+{% include './partials/_footer.html' %}
