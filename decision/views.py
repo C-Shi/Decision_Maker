@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
 from django.urls import reverse
 import json
@@ -70,6 +70,17 @@ def success(request, activity_id):
   choice_list = list(activity.choice_set.all().values('name', 'votes_count'))
 
   return render(request, 'decision/success.html', {'choice_list': choice_list, 'activity': activity })
+
+# RESFUL get page of admin
+def admin(request, admin_token):
+  activity = get_object_or_404(Activity, admin_token=admin_token)
+  choice_list = list(activity.choice_set.all().values('name', 'votes_count'))
+  print(activity.context)
+  if request.GET['email'] == activity.email:
+    return render(request, 'decision/admin.html', {'activity': activity, 'choice_list': choice_list})
+  else:
+    return HttpResponse('Denied! You do not have access')
+
 
 # RESTFUL post route to delete
 def delete(request, decision):
