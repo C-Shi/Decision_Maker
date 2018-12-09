@@ -12,6 +12,7 @@
       <div>
         <a href="{% url 'decision:new' %}">Create</a>
         <a id="vote-btn">Vote</a>
+        <a id="admin-btn">See My Activity</a>
       </div>
       <p>Decision Maker is a web app that helps groups of friends to vote on a preferred choice (using ranked voting)</p>
     </div>
@@ -24,20 +25,35 @@
     </div>
 
     <div class="token hidden">
-      <input type="text" id="activity-token">
-      <a href="" class="pure-button pure-button-primary" id="activity-token-link">Go To</a>
+      <h3>What's your activity token?</h3>
+      <input type="text" id="activity-token" placeholder="Enter Token">
+      <a href="" id="activity-token-link">Participate</a>
+    </div>
+
+    <div class="admin hidden">
+        <h3>What's your admin token?</h3>
+        <input type="text" id="admin-token" placeholder="Enter Token">
+        <a href="" id="admin-token-link">Edit Activity</a>
     </div>
 
 
     <script>
       var token = document.getElementsByClassName('token')[0]
-      var input = document.getElementById('activity-token')
-      var anchor = document.getElementById('activity-token-link')
+      var admin = document.getElementsByClassName('admin')[0]
+      var voteInput = document.getElementById('activity-token')
+      var adminInput = document.getElementById('admin-token')
+      var activityTokenLink = document.getElementById('activity-token-link')
+      var adminTokenLink = document.getElementById('admin-token-link')
       var voteBtn = document.getElementById('vote-btn');
+      var adminBtn = document.getElementById('admin-btn')
       var glass = document.getElementsByClassName('glass')[0]
 
-      input.addEventListener('input', function(e){
-        anchor.setAttribute('href', `/show/${e.target.value}`)
+      voteInput.addEventListener('input', function(e){
+        activityTokenLink.setAttribute('href', `/show/${e.target.value}`)
+      })
+
+      adminInput.addEventListener('input', function(e){
+        adminTokenLink.setAttribute('href', `/admin/${e.target.value}`)
       })
 
       
@@ -48,10 +64,21 @@
         console.log(token)
         token.classList.remove('hidden')
       })
+
+      adminBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        // show glass
+        glass.classList.remove('hidden')
+        console.log(token)
+        admin.classList.remove('hidden')
+      })
+
+
       
       glass.addEventListener('click', function(e){
         this.classList.add('hidden');
         token.classList.add('hidden')
+        admin.classList.add('hidden')
       })
 
     </script>
