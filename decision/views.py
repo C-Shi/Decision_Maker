@@ -69,7 +69,8 @@ def success(request, activity_id):
   activity = Activity.objects.get(pk=activity_id)
   choice_list = list(activity.choice_set.all().values('name', 'votes_count'))
 
-  return render(request, 'decision/success.html', {'choice_list': choice_list, 'activity': activity })
+  success_message = f'Thank you for voting. The final results will be released on {activity.expire_on}'
+  return render(request, 'decision/success.html', {'choice_list': choice_list, 'activity': activity, 'message': success_message})
 
 # RESFUL get page of admin
 def admin(request, admin_token):
@@ -108,8 +109,11 @@ def update(request, activity_id):
     else:
       pass
   
+  choice_list = activity.choice_set.all()
+  
+  success_message = 'You have updated your activity. Thank You !'
   # remove choice that does not need anymore
-  return HttpResponse('update')
+  return render(request, 'decision/success.html', {'activity': activity, 'choice_list': choice_list, 'message': success_message})
 
 
 # RESTFUL post route to delete
