@@ -31,9 +31,13 @@
     </div>
 
     <div class="admin hidden">
+      <form id="admin-token-link" method='GET'>
+        <!-- {% csrf_token %} -->
         <h3>What's your admin token?</h3>
         <input type="text" id="admin-token" placeholder="Enter Token">
-        <a href="" id="admin-token-link">Edit Activity</a>
+        <input type="email" name="email" placeholder="example@example.com">
+        <button>Edit Activity</button>
+      </form>
     </div>
 
 
@@ -53,7 +57,7 @@
       })
 
       adminInput.addEventListener('input', function(e){
-        adminTokenLink.setAttribute('href', `/admin/${e.target.value}`)
+        adminTokenLink.setAttribute('action', `/admin/${e.target.value}`)
       })
 
       

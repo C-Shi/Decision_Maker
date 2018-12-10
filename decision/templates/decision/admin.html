@@ -1,0 +1,103 @@
+{% include './partials/_header.html' %}
+
+<h3 class="admin-title">Belows are the information about your activity: {{ activity.context }}</h3>
+<main class="admin-page">
+    <form class="pure-form pure-form-aligned edit" action="{% url 'decision:update' activity.id %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <div class="pure-control-group">
+                <label>Activity</label>
+                <input name="context" type="text" value="{{ activity.context }}" required>
+            </div>
+    
+            <div class="pure-control-group">
+                <label>description</label>
+                <textarea name="description">{{ activity.description }}</textarea>
+            </div>
+    
+            <div class="options">
+              {% for choice in choice_list %}
+                <div class="pure-control-group">
+                    <label>Option </label>
+                    <input name="option" type="text" value="{{choice.name}}">
+                </div>
+              {% endfor %}
+
+            </div>
+            <button type="submit" class="pure-button pure-button-primary">Update Activity</button>
+        </fieldset>
+    </form>
+
+    <div class="admin-chart">
+        <table class="pure-table pure-table-horizontal">
+            <thead>
+                <tr>
+                    <th>Options</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+        
+            <tbody>
+              {% for choice in choice_list %}
+              <tr>
+                  <td>{{ choice.name }}</td>
+                  <td>{{ choice.votes_count }}</td>
+              </tr>
+              {% endfor %}
+              <tr>
+                <td colspan='2'>
+                    <canvas id="barChart"></canvas>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</main>  
+    <script>
+    var ctx = document.getElementById("barChart").getContext('2d');
+    
+    // obtain data from django and convert into js object
+    var choice_list = "{{ choice_list }}"
+    choice_list = choice_list.replace(/&#39;/g, "\"")
+    choice_list = JSON.parse(choice_list)
+    console.log(choice_list)
+    var labels = [];
+    var data = []
+    
+    
+    choice_list.forEach(function(choice){
+      labels.push(choice.name);
+      data.push(choice.votes_count)
+    })
+    
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels,
+            datasets: [{
+                label: '# of Votes',
+                data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+    });
+     
+    </script>
+
+{% include './partials/_footer.html' %}

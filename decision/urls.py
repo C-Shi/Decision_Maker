@@ -8,5 +8,7 @@ urlpatterns = [
   path('create/', views.create, name='create'),
   path('show/<str:activity_id>', views.show, name='show'),
   path('vote/<str:activity_id>', views.vote, name='vote'),
-  path('success/<str:activity_id>', views.success, name="success")
+  path('success/<str:activity_id>', views.success, name="success"),
+  path('admin/<str:admin_token>', views.admin, name='admin'),
+  path('update/<str:activity_id>', views.update, name='update'),
 ]

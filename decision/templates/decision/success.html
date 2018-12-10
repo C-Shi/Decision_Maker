@@ -1,7 +1,7 @@
 {% include './partials/_header.html' %}
 
 <div class="graph">
-    <p class="message">Thank you for voting. The final results will be released on {{ activity.expire_on }}</p>
+    <p class="message">{{ message }}</p>
     <p>The current voting results for <strong>{{ activity.context }}</strong> are as follows: </p>
     <table class="pure-table pure-table-horizontal">
         <thead>
