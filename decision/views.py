@@ -81,6 +81,36 @@ def admin(request, admin_token):
   else:
     return HttpResponse('Denied! You do not have access')
 
+# RESFUL update route
+def update(request, activity_id):
+  activity = get_object_or_404(Activity, pk=activity_id)
+
+  old_choice_list = activity.choice_set.all()
+  new_choice_list = request.POST.getlist('option')
+
+  # remove old choice if it does not exist in updatelist anymore - also remove all related votes
+  for old_choice in old_choice_list:
+    try:
+      print(new_choice_list.index(old_choice.name))
+    except:
+      old_choice.delete()
+    else:
+      pass
+
+  # add new choice if it does not exist
+  for new_choice in new_choice_list:
+    try:
+      choice = activity.choice_set.get(name=new_choice)
+    except:
+      # add this choice only if it does not equals to nothing
+      if new_choice != '':
+        activity.choice_set.create(name=new_choice)
+    else:
+      pass
+  
+  # remove choice that does not need anymore
+  return HttpResponse('update')
+
 
 # RESTFUL post route to delete
 def delete(request, decision):

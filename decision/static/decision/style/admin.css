@@ -1,10 +1,30 @@
+.admin-title {
+  margin-top: 80px;
+  text-align: center;
+}
+
 main.admin-page {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%);
-  width: 800px;
-  height: 600px;
-  max-width: 80%;
-  max-height: 70%;
+  margin-top: 30px;
+  width:100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.admin-page .edit{
+  width: 40%;
+}
+
+
+.admin-page .admin-chart {
+  width: 40%;
+}
+
+.admin-page .edit button {
+  display: block;
+  margin: 0 auto; 
+  border-radius: 5px;
+}
+
+.admin-page .edit input, .admin-page .edit textarea {
+  width: 60%;
 }

@@ -1,9 +1,8 @@
 {% include './partials/_header.html' %}
 
-<h1>You react admin page</h1>
-
+<h3 class="admin-title">Belows are the information about your activity: {{ activity.context }}</h3>
 <main class="admin-page">
-    <form class="pure-form pure-form-aligned new" action="" method="post">
+    <form class="pure-form pure-form-aligned edit" action="{% url 'decision:update' activity.id %}" method="post">
         {% csrf_token %}
         <fieldset>
             <div class="pure-control-group">
@@ -25,12 +24,11 @@
               {% endfor %}
 
             </div>
-            <button type="submit" class="pure-button pure-button-primary">Create Activity</button>
+            <button type="submit" class="pure-button pure-button-primary">Update Activity</button>
         </fieldset>
     </form>
 
     <div class="admin-chart">
-        <p>The current voting results for <strong>{{ activity.context }}</strong> are as follows: </p>
         <table class="pure-table pure-table-horizontal">
             <thead>
                 <tr>
@@ -53,9 +51,8 @@
               </tr>
             </tbody>
         </table>
-        <a class="pure-button pure-button-primary" href="{% url 'decision:index' %}">Exit</a>
     </div>
-    
+</main>  
     <script>
     var ctx = document.getElementById("barChart").getContext('2d');
     
@@ -102,8 +99,5 @@
     });
      
     </script>
-</main>
-
-<h1>{{ activity.context}}</h1>
 
 {% include './partials/_footer.html' %}
