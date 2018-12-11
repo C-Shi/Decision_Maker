@@ -117,5 +117,7 @@ def update(request, activity_id):
 
 
 # RESTFUL post route to delete
-def delete(request, decision):
-  pass
+def delete(request, activity_id):
+  activity = get_object_or_404(Activity, pk=activity_id)
+  activity.delete()
+  return HttpResponse('delete post')

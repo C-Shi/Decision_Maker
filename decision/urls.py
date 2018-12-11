@@ -11,4 +11,5 @@ urlpatterns = [
   path('success/<str:activity_id>', views.success, name="success"),
   path('admin/<str:admin_token>', views.admin, name='admin'),
   path('update/<str:activity_id>', views.update, name='update'),
+  path('delete/<str:activity_id>', views.delete, name='delete')
 ]

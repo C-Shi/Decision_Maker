@@ -1,6 +1,43 @@
+.glass {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(50, 50, 50, 0.75);
+  z-index: 2;
+}
+
+.hidden {
+  display: none;
+}
+
 .admin-title {
   margin-top: 80px;
   text-align: center;
+}
+
+.delete {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 100%;
+  max-width: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  z-index: 2;
+  background: #f2f0f3;
+  border-radius: 5px;
+}
+
+.delete .delete-btn {
+  color: #fff;
+  background: rgb(202, 60, 60); 
+}
+
+.delete .back-btn {
+  color: #fff;
+  background: rgb(66, 184, 221);
 }
 
 main.admin-page {

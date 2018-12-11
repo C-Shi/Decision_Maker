@@ -2,6 +2,8 @@
 
 {% load static %}
 
+<div class="glass hidden"></div>
+
 <h3 class="admin-title">Belows are the information about your activity: {{ activity.context }}</h3>
 <main class="admin-page">
     <form class="pure-form pure-form-aligned edit" action="{% url 'decision:update' activity.id %}" method="post">
@@ -29,9 +31,19 @@
             <div class="button-group">
                 <button type="submit" class="pure-button pure-button-primary">Update Activity</button>
                 <button type="button" class="pure-button pure-button-primary" id="add-option">Add options</button>
+                <a type="button" class="pure-button pure-button-primary" id="to-delete-confirm" >Delete Activity</a>
             </div>
         </fieldset>
     </form>
+
+    <div class="delete hidden">
+        <form action="{% url 'decision:delete' activity.id %}" method="POST">
+            {% csrf_token %}
+            <h3>Warning: Delete Action Cannot Be Undo</h3>
+            <button class="pure-button delete-btn">Delete</button>
+            <a class="pure-button back-btn">Exit</a>
+        </form>
+    </div>
 
     <div class="admin-chart">
         <table class="pure-table pure-table-horizontal">
@@ -101,9 +113,8 @@
                 borderWidth: 1
             }]
         },
-    });
-     
+    });     
     </script>
 
-    <script src="{% static 'decision/javascript/addOption.js'%}"></script>
+    <script src="{% static 'decision/javascript/admin.js'%}"></script>
 {% include './partials/_footer.html' %}
