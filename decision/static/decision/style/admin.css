@@ -19,12 +19,18 @@ main.admin-page {
   width: 40%;
 }
 
-.admin-page .edit button {
-  display: block;
-  margin: 0 auto; 
-  border-radius: 5px;
+.admin-page .button-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap
 }
+
 
 .admin-page .edit input, .admin-page .edit textarea {
   width: 60%;
+}
+
+.admin-page .button-group button {
+  margin-left: 3px;
+  border-radius: 5px;
 }

@@ -8,12 +8,22 @@
   max-width: 80%;
 }
 
-.new button {
+.new .button-group {
+  display: flex;
+  justify-content: center;
+}
+
+.new button.create {
   background: rgb(28, 184, 65);
-  width: 300px;
+  max-width: 200px;
   max-width: 80%;
-  display: block;
-  margin: 0 auto;
+  margin-right: 5px;
+}
+
+.new button#add-option {
+  background: rgb(66, 184, 221); 
+  max-width: 150px;
+  max-width: 80%;
 }
 
 .new input, .new textarea {

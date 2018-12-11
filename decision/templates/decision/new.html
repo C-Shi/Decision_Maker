@@ -1,6 +1,6 @@
 {% include './partials/_header.html' %}
 
-
+{% load static %}
 <form class="pure-form pure-form-aligned new" action="{% url 'decision:create' %}" method="post">
     {% csrf_token %}
     <fieldset>
@@ -26,20 +26,25 @@
 
         <div class="options">
             <div class="pure-control-group">
-                <label>Option 1</label>
-                <input name="option" type="text" placeholder="Option 1">
+                <label>Option:</label>
+                <input name="option" type="text" placeholder="Option">
             </div>
             <div class="pure-control-group">
-                <label>Option 2</label>
-                <input name="option" type="text" placeholder="Option 2">
+                <label>Option:</label>
+                <input name="option" type="text" placeholder="Option">
             </div>
             <div class="pure-control-group">
-                <label>Option 3</label>
-                <input name="option" type="text" placeholder="Option 3">
+                <label>Option:</label>
+                <input name="option" type="text" placeholder="Option">
             </div>
         </div>
-        <button type="submit" class="pure-button pure-button-primary">Create Activity</button>
+        <div class="button-group">
+            <button type="submit" class="pure-button pure-button-primary create">Create Activity</button>
+            <button type="button" class="pure-button pure-button-primary" id="add-option">Add options</button>
+        </div>
     </fieldset>
 </form>
+
+<script src="{% static 'decision/javascript/addOption.js'%}"></script>
 
 {% include './partials/_footer.html' %}
