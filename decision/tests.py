@@ -11,6 +11,11 @@ def create_fake_activity(context):
     expire_on = timezone.now() + datetime.timedelta(days=7)
     return Activity(context=context, creator=creator, email=email, description=description, expire_on=expire_on)
 
+def create_fake_choice(activity):
+  activity.choice_set.create(name="This is choice 1")
+  return activity.choice_set.all()
+  
+
 # Create your tests here.
 class ActivityModelTests(TestCase):
   def test_create_activity(self):
@@ -27,12 +32,19 @@ class ActivityModelTests(TestCase):
     self.assertTrue(activity.id)
 
 class ChoiceModelTests(TestCase):
-  def choice_create_on_activity(self):
+  # test name should start with test
+  def test_choice_create_on_activity(self):
     context = 'choice create activity'
     activity = create_fake_activity(context);
     activity.save()
-    activity.choice_set.create(name="This is choice 1")
-    choice_list = activity.choice_set.all()
-    print('hello')
+    choice_list = create_fake_choice(activity)
     self.assertTrue(choice_list)
+  
+  def test_choice_default_vote(self):
+    context = 'choice default vote'
+    activity = create_fake_activity(context);
+    activity.save()
+    choice_list = create_fake_choice(activity)
+    for choice in choice_list:
+      self.assertEqual(choice.votes_count, 0)
 
