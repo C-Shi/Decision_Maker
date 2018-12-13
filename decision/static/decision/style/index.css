@@ -110,6 +110,7 @@ html, body {
   border-radius: 4px;
   background: transparent;
   transition: background 1s, color 1s;
+  cursor: pointer;
 }
 
 .info a:nth-child(1){
@@ -182,5 +183,39 @@ html, body {
 
   30% {
     opacity: 0;
+  }
+}
+
+@media screen and (max-width: 1198px) {
+  .info a {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 931px) {
+  .info {
+    top: 40%;
+    width: 80%;
+  }
+
+  .info a {
+    font-size: 1.2em
+  }
+}
+
+@media screen and (max-width: 758px) {
+  .info h1{
+    font-size: 1.3em;
+  }
+
+  .info a {
+    display: block;
+    margin: 4px 0;
+  }
+}
+
+@media screen and (max-width: 441px) {
+  .info h1 {
+    font-size: 1em;
   }
 }
