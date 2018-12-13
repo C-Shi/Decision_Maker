@@ -9,6 +9,7 @@ urlpatterns = [
   path('show/<str:activity_id>', views.show, name='show'),
   path('vote/<str:activity_id>', views.vote, name='vote'),
   path('success/<str:activity_id>', views.success, name="success"),
+  path('info/success', views.success_create, name='success_create'),
   path('admin/<str:admin_token>', views.admin, name='admin'),
   path('update/<str:activity_id>', views.update, name='update'),
   path('delete/<str:activity_id>', views.delete, name='delete')

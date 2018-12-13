@@ -1,0 +1,10 @@
+{% include './partials/_header.html' %}
+{% load static %}
+
+<main class="info">
+  <h1>{{ message.title }}</h1>
+  <p>{{ message.content }}</p>
+  <a class="pure-button pure-button-primary" href="{% url 'decision:index' %}">OK! I Got It</a>
+</main>
+
+{% include './partials/_footer.html' %}
