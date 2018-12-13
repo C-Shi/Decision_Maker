@@ -71,3 +71,34 @@ main.admin-page {
   margin-left: 3px;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 1150px) {
+  .admin-page .edit {
+    width: 60%;
+  }
+
+  .admin-page .button-group {
+    justify-content: right
+  }
+}
+
+@media screen and (max-width: 867px) {
+  main.admin-page {
+    display: block;
+  }
+
+  .admin-page .button-group {
+    display: block;
+  }
+
+  main.admin-page form {
+    margin: 0 auto;
+  }
+
+  .admin-page .admin-chart {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+}
