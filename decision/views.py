@@ -140,7 +140,16 @@ def update(request, activity_id):
 # RESTFUL post route to delete
 def delete(request, activity_id):
   activity = get_object_or_404(Activity, pk=activity_id)
+  activity_context = activity.context
   activity.delete()
+
+  send_mail(
+      'Subject here',
+      f'Your activity \'{activity_context}\' has been deleted. All associated votes has been remoted as well',
+      'from@example.com',
+      ['to@example.com'],
+      fail_silently=True,
+  )
 
   message = {
     'title': 'You have delete an activity',
