@@ -22,8 +22,8 @@
 
 .new button#add-option {
   background: rgb(66, 184, 221); 
-  max-width: 150px;
   max-width: 80%;
+  margin-left: 5px;
 }
 
 .new input, .new textarea {
@@ -31,3 +31,16 @@
   max-width: 70%;
 }
 
+
+@media screen and (max-width: 752px) {
+  .new .pure-control-group {
+    margin-bottom: 10px;
+  }
+  .new .pure-control-group label {
+    text-align: left
+  }
+
+  .new .button-group {
+    justify-content: flex-start;
+  }
+}
