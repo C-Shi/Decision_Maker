@@ -41,7 +41,12 @@ def create(request):
     option = options_list[i]
     new_activity.choice_set.create(name=option)
 
-  return HttpResponseRedirect(reverse('decision:success_create'))
+  message = {
+    'title': 'You have create an activity',
+    'content': 'The secret link has been sent to you through email. You will be able to forward link to whoever needs to know. Voting session will be closed on expired date'
+  }
+
+  return render(request, 'decision/info.html', {'message': message})
 
 # RESTFUL show route for individual decision
 # this app does not have route for seeing all activity
@@ -120,13 +125,10 @@ def update(request, activity_id):
 def delete(request, activity_id):
   activity = get_object_or_404(Activity, pk=activity_id)
   activity.delete()
-  return HttpResponse('delete post')
 
-
-def success_create(request):
   message = {
-    'title': 'You have create an activity',
-    'content': 'The secret link has been sent to you through email. You will be able to forward link to whoever needs to know. Voting session will be closed on expired date'
+    'title': 'You have delete an activity',
+    'content': 'You have just deleted an activity. All related votes has been removed as well'
   }
-
   return render(request, 'decision/info.html', {'message': message})
+

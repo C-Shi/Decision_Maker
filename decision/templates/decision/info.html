@@ -7,4 +7,10 @@
   <a class="pure-button pure-button-primary" href="{% url 'decision:index' %}">OK! I Got It</a>
 </main>
 
+<script>
+  window.setTimeout(function () {
+    location.href = "{% url 'decision:index' %}";
+}, 5000); // refresh/redirect after 5 seconds.
+</script>
+
 {% include './partials/_footer.html' %}
