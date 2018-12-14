@@ -32,6 +32,6 @@ A Fullstack RESTFUL Web Application based on Django Framework. This application 
 
 ** Tech Stack
 This application use Python3 Django framework as back-end. Database is sqlite3, however, Django is compatible with multiple different database therefore switching to other SQL database is very simple. On frontend, this application use chart.js to genereate pie chart and yahoo pure css framework <br/>
-![7](./stack.png)
+![7](./docs/stack.png)
 
 
