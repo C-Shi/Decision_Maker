@@ -13,22 +13,22 @@ A Fullstack RESTFUL Web Application based on Django Framework. This application 
 
 ** Live Demo
 1. On index page, user is directed with creating activity, voting for existing activity and manage his own page <br/>
-![1](./index.png)
+![1](./docs/index.png)
 
 2. When creating an activity, creator is required to enter basic information, with 3 choice options. Creator can add more options if he needed <br/>
-![2](./create_poll.png)
+![2](./docs/create_poll.png)
 
 3. On admin page, creator is able to see the current voting breakdown as pie chart. Creator also able to change information or choices. <br/>
-![3](./update_admin.png)
+![3](./docs/update_admin.png)
 
 4. To vote, user is required to enter voting token. To access admin, creator is required to enter admin token as well as creator's email. <br/>
-![4](./enter_token.png)
+![4](./docs/enter_token.png)
 
 5. User is able to vote for the choice he prefer. User can only see voting results after he voted
-![5](./vote_choice.png) <br/>
+![5](./docs/vote_choice.png) <br/>
 
 6. After voting, user is able to see the current voting results <br/>
-![6](./success_vote.png)
+![6](./docs/success_vote.png)
 
 ** Tech Stack
 This application use Python3 Django framework as back-end. Database is sqlite3, however, Django is compatible with multiple different database therefore switching to other SQL database is very simple. On frontend, this application use chart.js to genereate pie chart and yahoo pure css framework <br/>
