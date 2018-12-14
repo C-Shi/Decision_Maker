@@ -1,7 +1,7 @@
-* Decision Maker
+# Decision Maker
 A Fullstack RESTFUL Web Application based on Django Framework. This application allows user to create an activity with multiple choices for voting. User is able to create, modify or delete his owned activity and invite their friends to vote for the best decision
 
-** User Story
+## User Story
 - a user can create a activity with multiple choices
 - the creator must enter an email
 - the poll creator is given two links: an administrative link (which - lets them access the results) and a submission link (which the user sends to their friends)
@@ -11,7 +11,7 @@ A Fullstack RESTFUL Web Application based on Django Framework. This application 
 - the creator is able to see the current voting result as a pie chart
 - the user will not be able to vote after the poll expired
 
-** Live Demo
+## Live Demo
 1. On index page, user is directed with creating activity, voting for existing activity and manage his own page <br/>
 ![1](./docs/index.png)
 
@@ -30,7 +30,7 @@ A Fullstack RESTFUL Web Application based on Django Framework. This application 
 6. After voting, user is able to see the current voting results <br/>
 ![6](./docs/success_vote.png)
 
-** Tech Stack
+## Tech Stack
 This application use Python3 Django framework as back-end. Database is sqlite3, however, Django is compatible with multiple different database therefore switching to other SQL database is very simple. On frontend, this application use chart.js to genereate pie chart and yahoo pure css framework <br/>
 ![7](./docs/stack.png)
 
